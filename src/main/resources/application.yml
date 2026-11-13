@@ -6,37 +6,39 @@ spring:
     name: api-gateway
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      routes:
-        - id: usuarios-service
-          uri: lb://usuarios-service
-          predicates:
-            - Path=/api/usuarios/**
-        - id: deudas-service
-          uri: lb://deudas-service
-          predicates:
-            - Path=/api/deudas/**
-        - id: pagos-service
-          uri: lb://pagos-service
-          predicates:
-            - Path=/api/pagos/**
-        - id: tarjetas-service
-          uri: lb://tarjetas-service
-          predicates:
-            - Path=/api/tarjetas/**
-        - id: notificaciones-service
-          uri: lb://notificaciones-service
-          predicates:
-            - Path=/api/notificaciones/**
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods: "*"
-            allowedHeaders: "*"
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          routes:
+            - id: usuarios-service
+              uri: lb://usuarios-service
+              predicates:
+                - Path=/api/usuarios/**
+            - id: deudas-service
+              uri: lb://deudas-service
+              predicates:
+                - Path=/api/deudas/**
+            - id: pagos-service
+              uri: lb://pagos-service
+              predicates:
+                - Path=/api/pagos/**
+            - id: tarjetas-service
+              uri: lb://tarjetas-service
+              predicates:
+                - Path=/api/tarjetas/**
+            - id: notificaciones-service
+              uri: lb://notificaciones-service
+              predicates:
+                - Path=/api/notificaciones/**
+          globalcors:
+            corsConfigurations:
+              '[/**]':
+                allowedOrigins: "*"
+                allowedMethods: "*"
+                allowedHeaders: "*"
 
 eureka:
   client:
